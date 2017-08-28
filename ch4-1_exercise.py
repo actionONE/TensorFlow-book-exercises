@@ -48,7 +48,7 @@ with tf.Session() as sess:
     initial_step = 0
     
     # verify if we don't have a checkpoint saved already
-    ckpt = tf.train.get_checkpoint_state(os.path.dirname('E:\Python-Scripts\my-model'))
+    ckpt = tf.train.get_checkpoint_state(os.path.dirname('E:\Python-Scripts\my_model'))
     if ckpt and ckpt.model_checkpoint_path:
         # Restores from checkpoint
         saver.restore(sess, ckpt.model_ckeckpoint_path)
@@ -61,7 +61,7 @@ with tf.Session() as sess:
         sess.run([train_op])
         
         if step % 1000 ==0:
-            saver.save(sess, 'E:\Python-Scripts\my-model', global_step=step)
+            saver.save(sess, 'E:\Python-Scripts\my_model\ex4-1', global_step=step)
         if step % 10 ==0:
             print( "loss: ",sess.run([total_loss]) )
     
@@ -69,5 +69,5 @@ with tf.Session() as sess:
     coord.request_stop()
     coord.join(threads)
     
-    saver.save(sess, 'E:\Python-Scripts\my-model', global_step=training_steps)
+    saver.save(sess, 'E:\Python-Scripts\my_model\ex4-1', global_step=training_steps)
     sess.close()
